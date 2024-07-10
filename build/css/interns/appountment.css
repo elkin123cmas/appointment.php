@@ -1,0 +1,284 @@
+@charset "UTF-8";
+body,
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+}
+
+.appuntment {
+  width: 100%;
+  height: 100vh;
+  background: rgb(0, 0, 0);
+  background: linear-gradient(270deg, rgb(0, 0, 0) 0%, rgba(14, 14, 14, 0.9612219888) 50%, rgb(0, 0, 0) 100%);
+}
+.appuntment .containImgLeft {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  display: none;
+}
+.appuntment .containImgLeft img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.appuntment .containImgLeft .textEtern {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  transform: translate(-50%, -50%);
+  color: #fcf3ea;
+  letter-spacing: 8px;
+  font-size: 4rem;
+  text-align: center;
+  text-shadow: 0 0 10px #f90716, 0 0 20px #f90716, 0 0 40px #f90716, 0 0 80px #f90716, 0 0 120px #f90716;
+}
+.appuntment .containImgLeft .effectText {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px; /* Fijo el ancho de la barra */
+  height: 100%; /* Ocupa todo el alto del contenedor */
+  background-color: #fcf3ea;
+  z-index: 2;
+  box-shadow: 0 0 10px #f90716, 0 0 20px #f90716, 0 0 40px #f90716, 0 0 80px #f90716, 0 0 120px #f90716;
+  animation: animate 9s linear infinite;
+}
+@keyframes animate {
+  0% {
+    left: 0; /* Comienza en la posición más a la izquierda */
+  }
+  100% {
+    left: calc(100% - 4px); /* Se desplaza completamente a la derecha */
+  }
+}
+
+.containInfoAPP {
+  margin-left: 50%;
+  width: 100%;
+  height: 100vh;
+  overflow-y: auto;
+  padding: 1rem; /* Ajusta según sea necesario */
+}
+.containInfoAPP .containTitle {
+  width: auto;
+  height: auto;
+  text-align: center;
+  margin: auto;
+  padding-top: 3rem;
+  margin-top: 3rem;
+}
+.containInfoAPP .containTitle .title {
+  font-size: 2.5rem;
+  margin: 0;
+  color: #fffbea;
+}
+.containInfoAPP .containTitle .descripcion {
+  font-size: 1.5rem;
+  color: #fffbea;
+}
+
+.cerrarSesion {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: auto;
+  height: auto;
+  margin: 6rem 0;
+}
+.cerrarSesion .nameUser {
+  font-size: 1.6rem;
+  color: #f5bf93;
+}
+.cerrarSesion .clouseSession {
+  font-size: 1.6rem;
+  color: #fffbea;
+}
+
+.infoBar {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  text-align: center;
+  width: 100%;
+  height: auto;
+  margin-bottom: 4rem;
+}
+.infoBar .sectionInfo {
+  display: inline-block;
+  width: 15rem;
+  height: 100%;
+  border: none;
+  padding: 0.5rem 1rem;
+  color: #fcf3ea;
+  transition: all ease 0.4s;
+  background-color: #691d1a;
+}
+.infoBar .sectionInfo:hover {
+  cursor: pointer;
+  background-color: #842320;
+}
+
+.containGridServices {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  justify-content: center;
+  align-items: center;
+  gap: 2rem 0;
+}
+.containGridServices .gridIntern {
+  position: relative;
+  width: 90%;
+  height: 15rem;
+  margin: auto;
+}
+.containGridServices .gridIntern:hover .containImgGrid img {
+  transform: scale(1.2);
+  -webkit-box-shadow: 0px 0px 5px 3px rgb(227, 140, 84);
+  -moz-box-shadow: 0px 0px 5px 3px rgb(227, 140, 84);
+  box-shadow: 0px 0px 5px 3px rgb(227, 140, 84);
+}
+.containGridServices .gridIntern .containImgGrid {
+  width: 100%;
+  height: 100%;
+  border-radius: 1rem;
+  -webkit-box-shadow: 0px 0px 5px 1px rgba(245, 191, 147, 0.68);
+  -moz-box-shadow: 0px 0px 5px 1px rgba(245, 191, 147, 0.68);
+  box-shadow: 0px 0px 5px 1px rgba(245, 191, 147, 0.68);
+  transition: all ease 0.4s;
+  overflow: hidden;
+}
+.containGridServices .gridIntern .containImgGrid:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+  font-size: 3rem;
+  -webkit-box-shadow: 0px 0px 5px 3px rgb(227, 140, 84);
+  -moz-box-shadow: 0px 0px 5px 3px rgb(227, 140, 84);
+  box-shadow: 0px 0px 5px 3px rgb(227, 140, 84);
+}
+.containGridServices .gridIntern .containImgGrid img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 1rem;
+  transition: transform ease 0.4s;
+}
+.containGridServices .gridIntern .descriptionServices {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  transform: translateY(-50%, -50%);
+  text-align: center;
+  width: auto;
+  height: 2rem;
+}
+.containGridServices .gridIntern .descriptionServices .descriptionServicesText {
+  font-size: 2rem;
+  color: #fffbea;
+}
+
+.appoun {
+  margin: auto;
+  min-width: 50rem;
+}
+
+.containNextBack {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.back {
+  background-color: #b45509;
+}
+.back:hover {
+  background-color: #d97906;
+}
+
+.inputDate {
+  position: relative;
+  display: inline-block;
+}
+
+.inputIntern.date {
+  width: 100%;
+  padding: 10px;
+  padding-right: 40px; /* Espacio para el icono */
+  font-size: 16px;
+  border: 1px solid #8b8b8b;
+  font-size: 1rem;
+  border-radius: 4px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.inputIntern.date::-webkit-calendar-picker-indicator {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 24px; /* Ajusta el tamaño según tu necesidad */
+  width: 24px; /* Ajusta el tamaño según tu necesidad */
+  opacity: 0; /* Oculta el icono original */
+  cursor: pointer;
+}
+
+.icon.dates {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none; /* Permite hacer clic a través del icono */
+  font-size: 20px; /* Ajusta el tamaño según tu necesidad */
+  color: #aaa;
+  /* Ajusta el color según tu necesidad */
+}
+
+.inputTime {
+  position: relative;
+  display: inline-block;
+}
+
+.inputInter.time {
+  width: 100%;
+  padding: 10px;
+  padding-right: 40px; /* Espacio para el icono */
+  font-size: 16px;
+  border: 1px solid #8b8b8b;
+  font-size: 1rem;
+  border-radius: 4px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.inputIntern.time::-webkit-calendar-picker-indicator {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 24px; /* Ajusta el tamaño según tu necesidad */
+  width: 24px; /* Ajusta el tamaño según tu necesidad */
+  opacity: 0; /* Oculta el icono original */
+  cursor: pointer;
+}
+
+.icon.times {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none; /* Permite hacer clic a través del icono */
+  font-size: 20px; /* Ajusta el tamaño según tu necesidad */
+  color: #aaa;
+}

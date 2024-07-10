@@ -1,0 +1,324 @@
+body,
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+}
+.appuntment {
+  // display: flex;
+  // justify-content: center;
+  // align-items: center;
+  width: 100%;
+  height: 100vh;
+  background: rgb(0, 0, 0);
+  background: linear-gradient(
+    270deg,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(14, 14, 14, 0.9612219887955182) 50%,
+    rgba(0, 0, 0, 1) 100%
+  );
+  .containImgLeft {
+    position: fixed;                                                   
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    display: none;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .textEtern {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 100%;
+      transform: translate(-50%, -50%);
+      color: #fcf3ea;
+      letter-spacing: 8px;
+      font-size: 4rem;
+      text-align: center;
+      text-shadow: 0 0 10px #f90716, 0 0 20px #f90716, 0 0 40px #f90716,
+        0 0 80px #f90716, 0 0 120px #f90716;
+    }
+    .effectText {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px; /* Fijo el ancho de la barra */
+      height: 100%; /* Ocupa todo el alto del contenedor */
+      background-color: #fcf3ea;
+      z-index: 2;
+      box-shadow: 0 0 10px #f90716, 0 0 20px #f90716, 0 0 40px #f90716,
+        0 0 80px #f90716, 0 0 120px #f90716;
+      animation: animate 9s linear infinite;
+      @keyframes animate {
+        0% {
+          left: 0; /* Comienza en la posición más a la izquierda */
+        }
+        100% {
+          left: calc(100% - 4px); /* Se desplaza completamente a la derecha */
+        }
+      }
+    }
+  }
+}
+
+.containInfoAPP {
+  // margin: auto;
+  margin-left: 50%; 
+  width: 100%;
+  height: 100vh;
+  overflow-y: auto;
+  padding: 1rem; /* Ajusta según sea necesario */
+  // background-color: #691d1a;
+  .containTitle {
+    width: auto;
+    height: auto;
+    text-align: center;
+    margin: auto;
+padding-top: 3rem;
+    margin-top: 3rem;
+    // background-color: #bb4a02;
+
+    .title {
+      font-size: 2.5rem;
+      margin: 0;
+      color: #fffbea;
+    }
+    .descripcion {
+      font-size: 1.5rem;
+      color: #fffbea;
+    }
+  }
+}
+.cerrarSesion {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: auto;
+  height: auto;
+  margin: 6rem 0; // background-color: yellowgreen;
+
+  .nameUser {
+    font-size: 1.6rem;
+    color: #f5bf93;
+  }
+  .clouseSession {
+    font-size: 1.6rem;
+    color: #fffbea;
+  }
+}
+.infoBar {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  text-align: center;
+  width: 100%;
+  height: auto;
+  margin-bottom: 4rem;
+
+  // background-color: rgb(161, 43, 22);
+
+  .sectionInfo {
+    display: inline-block;
+    width: 15rem;
+    height: 100%;
+    border: none;
+    padding: 0.5rem 1rem;
+    color: #fcf3ea;
+    transition: all ease 0.4s;
+    background-color: #691d1a;
+
+    &:hover {
+      cursor: pointer;
+      background-color: #842320;
+    }
+  }
+}
+.containGridServices {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  justify-content: center;
+  align-items: center;
+  gap: 2rem 0;
+  // background-color: green;
+
+  .gridIntern {
+    position: relative;
+
+    width: 90%;
+    height: 15rem;
+    margin: auto;
+
+    &:hover .containImgGrid img {
+      transform: scale(1.2);
+      -webkit-box-shadow: 0px 0px 5px 3px rgba(227, 140, 84, 1);
+      -moz-box-shadow: 0px 0px 5px 3px rgba(227, 140, 84, 1);
+      box-shadow: 0px 0px 5px 3px rgba(227, 140, 84, 1);
+    }
+
+    .containImgGrid {
+      width: 100%;
+      height: 100%;
+      border-radius: 1rem;
+      // border: 2px solid #ffd045;
+      -webkit-box-shadow: 0px 0px 5px 1px rgba(245, 191, 147, 0.68);
+      -moz-box-shadow: 0px 0px 5px 1px rgba(245, 191, 147, 0.68);
+      box-shadow: 0px 0px 5px 1px rgba(245, 191, 147, 0.68);
+      transition: all ease 0.4s;
+      overflow: hidden;
+
+      &:hover {
+        cursor: pointer;
+        transform: scale(1.05);
+        font-size: 3rem;
+        -webkit-box-shadow: 0px 0px 5px 3px rgba(227, 140, 84, 1);
+        -moz-box-shadow: 0px 0px 5px 3px rgba(227, 140, 84, 1);
+        box-shadow: 0px 0px 5px 3px rgba(227, 140, 84, 1);
+      }
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 1rem;
+        transition: transform ease 0.4s;
+      }
+    }
+    .descriptionServices {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      transform: translateY(-50%, -50%);
+      text-align: center;
+      width: auto;
+      height: 2rem;
+      // background-color: #f5bf93;
+
+      .descriptionServicesText {
+        font-size: 2rem;
+        color: #fffbea;
+      }
+    }
+  }
+}
+
+.appoun {
+  margin: auto;
+  min-width: 50rem;
+  // background-color: green;
+  // .inputIntern{
+  //   background-color: rgb(233, 97, 97);
+  // }
+  // .icon{
+  //   display: none;
+  // }
+}
+
+.containNextBack {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  // background-color: #f5bf93;
+
+ 
+
+}
+.back{
+  background-color: #b45509;
+&:hover{
+  background-color: #d97906;
+}
+}
+////ICONO CALENDARIO
+.inputDate{
+  position: relative;
+  display: inline-block;
+}
+
+.inputIntern.date {
+  width: 100%;
+  padding: 10px;
+  padding-right: 40px; /* Espacio para el icono */
+  font-size: 16px;
+  border: 1px solid #8b8b8b;
+  font-size: 1rem;
+  border-radius: 4px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.inputIntern.date::-webkit-calendar-picker-indicator {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 24px; /* Ajusta el tamaño según tu necesidad */
+  width: 24px;  /* Ajusta el tamaño según tu necesidad */
+  opacity: 0; /* Oculta el icono original */
+  cursor: pointer;
+}
+
+.icon.dates {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none; /* Permite hacer clic a través del icono */
+  font-size: 20px; /* Ajusta el tamaño según tu necesidad */
+  color: #aaa;
+
+  /* Ajusta el color según tu necesidad */
+}
+
+///FINAL ICONO CALENDARIO
+
+
+//ICONO HORA
+
+.inputTime {
+  position: relative;
+  display: inline-block;
+}
+
+.inputInter.time {
+  width: 100%;
+  padding: 10px;
+  padding-right: 40px; /* Espacio para el icono */
+  font-size: 16px;
+  border: 1px solid #8b8b8b;
+  font-size: 1rem;
+  border-radius: 4px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.inputIntern.time::-webkit-calendar-picker-indicator {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 24px; /* Ajusta el tamaño según tu necesidad */
+  width: 24px;  /* Ajusta el tamaño según tu necesidad */
+  opacity: 0; /* Oculta el icono original */
+  cursor: pointer;
+}
+
+.icon.times {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none; /* Permite hacer clic a través del icono */
+  font-size: 20px; /* Ajusta el tamaño según tu necesidad */
+  color: #aaa;
+}

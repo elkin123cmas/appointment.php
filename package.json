@@ -1,0 +1,22 @@
+{
+  "name": "tattoo",
+  "version": "1.0.0",
+  "description": "tatto design",
+  "main": "index.js",
+  "scripts": {
+    "sass": "sass --watch src/scss:build/css",
+    "css": "gulp css",
+    
+    "dev": "gulp dev"
+  },
+  "author": "InDev.co",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^5.0.0",
+    "gulp-plumber": "^1.2.1",
+    "gulp-sass": "^5.1.0",
+    "nodemon": "^3.1.0",
+    "parallel": "^1.2.0",
+    "sass": "^1.77.2"
+  }
+}

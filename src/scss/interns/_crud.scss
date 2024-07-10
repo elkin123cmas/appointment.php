@@ -1,0 +1,191 @@
+///CREAR.PHP
+
+.contain-main {
+  width: 80%;
+  height: 28rem;
+  margin: auto;
+  // background-color: rgb(111, 35, 22);
+  .formInit {
+    margin-bottom: 4rem;
+    .titleCrear {
+      font-size: 2rem;
+      color: #d3e5ff;
+      margin-bottom: 1rem;
+    }
+  }
+
+  .input-container {
+    margin: auto;
+    margin-bottom: 2rem;
+
+    .inputIntern {
+      width: 100%;
+      height: 100%;
+      padding-left: 1rem;
+      font-size: 1rem;
+      outline: none;
+      border: 1px solid #8b8b8b;
+      border-radius: 0.5rem;
+      background-color: transparent;
+      backdrop-filter: blur(1rem);
+      color: #fef2f2;
+      transition: all ease-in 0.3s;
+
+      &:focus {
+        border-top: 3px solid #0d18b0;
+      }
+    }
+    .inputIntern.file {
+      opacity: 0;
+      position: absolute;
+      z-index: -1;
+    }
+  }
+}
+.custom-file-label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding: 0.8rem 1rem;
+  border: 1px solid #8b8b8b;
+  border-radius: 5px;
+  // background-color: #f9f9f9;
+  font-size: 1rem;
+  color: #8b8b8b;
+  transition: all ease 0.4s;
+}
+
+.custom-file-label:hover {
+  background-color: #d3e5ff;
+}
+.crearBtn {
+  display: block;
+  color: #ebf5ff;
+  background-color: #2944ff;
+  margin: auto;
+  margin-top: 8rem;
+  margin-right: 0;
+  
+  &:hover {
+    background-color: #070a5f;
+    color: #e7f0ff;
+  }
+}
+.styleDeffect{
+  margin-top: 0rem;
+}
+///FINAL CREAR.PHP
+
+///alertas y errores
+.alerta {
+  width: 90%;
+  height: auto;
+  font-size: 1.4rem;
+  text-transform: uppercase;
+  text-align: center;
+  color: #fef2f2;
+  padding: 0.7rem;
+  margin: auto;
+  margin-bottom: 2rem;
+  &.error {
+    background-color: #b53d19;
+  }
+}
+//////estilos tabla
+
+table.containTable {
+  .spacer-row {
+    height: 2rem;
+    background-color: transparent;
+  }
+  margin-top: 3rem;
+  width: 100%;
+  border-spacing: 0;
+
+  thead {
+    background-color: #d97906;
+
+    th {
+      color: #fef2f2;
+      padding: 1rem;
+    }
+  }
+
+  .imagenTabla {
+    width: 10rem;
+  }
+  tbody {
+    margin-top: 5rem;
+    th {
+      color: #fef6ee;
+    }
+  }
+}
+.flexLink {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  a {
+    display: block;
+    background-color: #d8312a;
+    padding: 0.5rem 1rem;
+    color: #fef2f2;
+    border-radius: 0.5rem;
+    width: 10rem;
+    margin: auto;
+    transition: all ease 0.4s;
+    text-align: center;
+    &:hover {
+      background-color: #96231e;
+    }
+  }
+  .btnUpdate {
+    background-color: #2944ff;
+
+    &:hover {
+      background-color: #20308f;
+    }
+  }
+  .btnDelete{
+    display: block;
+    background-color: #d8312a;
+    padding: 0.5rem 1rem;
+    color: #fef2f2;
+    border: none;
+    border-radius: 0.5rem;
+    width: 10rem;
+    margin: auto;
+    transition: all ease 0.4s;
+    text-align: center;
+    &:hover {
+      background-color: #96231e;
+    }
+  }
+}
+//////fin estilos tabla
+
+////imagen small actualizar
+.imagenSmall{
+  display: block;
+  width: 10rem;
+  margin: auto;
+  margin-top: 1rem;
+  transition: all ease .4s;
+  &:hover{
+    transform: scale(3);
+  }
+}
+//estilos alternos grid
+.barOption{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  
+}
+//click en enlace se mantiene el color
+.sectionInfo.changeActive{
+  background-color: #fef3f2; 
+  color: #440d0b; 
+}
