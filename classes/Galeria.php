@@ -27,7 +27,25 @@ class Galeria
         $this->titulo = $args['titulo'] ?? '';
         $this->imagen = $args['imagen'] ?? '';
     }
+    // public function guardar()
+    // {
+    //     if (isset($this->id)) {
+    //         $this->actualizar();
+    //     } else {
+    //         $this->crear();
+    //     }
+    // }
+    // public function actualizar()
+    // {
+    //     // Sanitizar datos
+    //     $atributos = $this->sanitizarAtributos();
 
+    //     $valores = [];
+    //     foreach ($atributos as $key => $value) {
+    //         $valores[] = "{$key}='{$value}'";
+    //     }
+    //     debuguear($valores);
+    // }
     public function guardar()
     {
         // Sanitizar datos
@@ -161,5 +179,57 @@ class Galeria
         ///
 
         return self::$errores;
+    }
+    //lista todas las imagenes
+    public static function all()
+    {
+        $query = "SELECT * FROM galeriainicio";
+
+        $resultado = self::consultarSQL($query);
+        // debuguear($resultado);
+        return $resultado;
+    }
+    //buscar una galeria por su id
+    public static function find($id)
+    {
+        $consulta = "SELECT * FROM galeriainicio WHERE id = {$id}";
+        $resultado = self::consultarSQL($consulta);
+        return array_shift($resultado);
+    }
+    public static function consultarSQL($query)
+    {
+        //consultar la base de datos
+        $resultado = self::$db->query($query);
+        //iterar la base de datos
+        $array = [];
+        while ($registro = $resultado->fetch_assoc()) {
+            $array[] = self::crearObjeto($registro);
+        }
+        //liberar la memoria
+        $resultado->free();
+        //retornar los resultados
+        return $array;
+    }
+
+    protected static function crearObjeto($registro)
+    {
+        $objeto = new self;
+
+        foreach ($registro as $key => $value) {
+            if (property_exists($objeto, $key)) {
+                $objeto->$key = $value;
+            }
+        }
+
+        return $objeto;
+    }
+    //sincroniza el obejeto en memoria con los cambios realziados por el usuario
+    public function sincronizar($args = [])
+    {
+        foreach ($args as $key => $value) {
+            if (property_exists($this, $key) && !is_null($value)) {
+                $this->$key = $value;
+            }
+        }
     }
 }

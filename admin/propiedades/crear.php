@@ -9,9 +9,8 @@ estaAutenticado();
 $db = conectarDB();
 Galeria::setDB($db);
 
-$galeria = new Galeria();
+$galeria = new Galeria;
 $errores = Galeria::getErrores();
-$titulo = ''; // Inicializamos la variable $titulo
 
 // Ejecutar código después de que el usuario envíe el formulario
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -79,22 +78,7 @@ incluir_template('header', $nameAdmin = true);
 
 <main class="contain-main">
     <form action="/admin/propiedades/crear.php" method="POST" class="formInit" enctype="multipart/form-data">
-        <h3 class="titleCrear">Titulo del estilo</h3>
-        <div class="input-container">
-            <input id="titulo" type="text" value="<?php echo htmlspecialchars($titulo); ?>" placeholder="Nombre del estilo..." class="inputIntern" id="nombreEstilo" name="titulo" />
-        </div>
-        <h3 class="titleCrear">Imagen del estilo</h3>
-        <div class="input-container">
-            <input accept="image/jpeg, image/png" type="file" id="fileInput" class="inputIntern file" id="imagenEstilo" name="imagen" />
-            <label for="fileInput" class="custom-file-label">
-                Subir Archivo...
-            </label>
-        </div>
-        <?php
-        // Obtiene la ruta actual del archivo
-        $currentPath = $_SERVER['PHP_SELF'];
-        $isCrearPage = strpos($currentPath, 'crear.php') !== false;
-        ?>
+        <?php include '../../includes/templates/formulario_galeria.php' ?>
         <input type="submit" class="btn-send crearBtn <?php echo $isCrearPage ? 'styleDeffect' : ''; ?>" value="CREAR ESTILO">
     </form>
     <?php if (!empty($mensaje)) : ?>

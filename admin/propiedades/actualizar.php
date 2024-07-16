@@ -1,9 +1,13 @@
 <?php
-require '../../includes/functions.php';
-if (!estaAutenticado()) {
-    header('Location: /index.php');
-    exit;
-}
+
+use App\Galeria;
+
+require '../../includes/app.php';
+// if (!estaAutenticado()) {
+//     header('Location: /index.php');
+//     exit;
+
+estaAutenticado();
 //validar la url por id valido
 $id = $_GET['id'];
 $id = filter_var($id, FILTER_VALIDATE_INT);
@@ -12,15 +16,16 @@ if (!$id) {
     header('Location: /admin/index.php');
 }
 //Conexion base de datos
-require '../../includes/config/database.php';
-$db = conectarDB();
+// require '../../includes/config/database.php';
+// $db = conectarDB();
 // var_dump($db);
 
 //obtener los datos de la galeriaimagen
-$consulta = "SELECT * FROM galeriainicio WHERE id = {$id}";
+$galeria = Galeria::find($id);
+// $consulta = "SELECT * FROM galeriainicio WHERE id = {$id}";
 // echo $consulta;
-$resultado = mysqli_query($db, $consulta);
-$clasificado = mysqli_fetch_assoc($resultado);
+// $resultado = mysqli_query($db, $consulta);
+// $clasificado = mysqli_fetch_assoc($resultado);
 // echo "<pre>";
 // var_dump($clasificado);
 // echo "</pre>";
@@ -29,9 +34,9 @@ $clasificado = mysqli_fetch_assoc($resultado);
 
 
 //arreglo con mensajes de errores
-$errores = [];
-$titulo = $clasificado['titulo'];
-$imagenGaleria = $clasificado['imagen'];
+$errores = Galeria::getErrores();
+$titulo = $galeria->titulo;
+$imagenGaleria = $galeria->imagen;
 
 
 //ejecutar codigo despues de que el usuario envie el formulario
@@ -44,15 +49,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // var_dump($_FILES);
     // echo "</pre>";
 
+    //asiganra los atributos
+    $args = [];
+    $args['titulo'] = $_POST['titulo'] ?? null;
+    $args['imagen'] = $_POST['imagen'] ?? null;
+    $galeria->sincronizar($args);
+
+    $errores = $galeria->validar();
+    // debuguear($galeria);
+
     $titulo = mysqli_real_escape_string($db, $_POST['titulo']);
 
     //asignar files a una variable
 
     $imagen = $_FILES['imagen'];
 
-    if (!$titulo) {
-        $errores[] = "Debes añadir el titulo del estilo";
-    }
+    // if (!$titulo) {
+    //     $errores[] = "Debes añadir el titulo del estilo";
+    // }
 
 
     //validar por tamaño de imagen
@@ -61,11 +75,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($imagen['size'] > $medida) {
         $errores[] = "La imagen es muy pesada";
     }
-
-    // echo "<pre>";
-    // var_dump($errores);
-    // echo "</pre>";
-    // exit;
 
     //revisar que se inserte a la bd si el array de errores esta vacio
     if (empty($errores)) {
@@ -79,28 +88,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         ///SUBIDA DE ARCHIVOS
         if ($imagen['name']) {
-            //eliminar imagen anterior
-            unlink($carpetaImagenes . $clasificado['imagen']);
+            // eliminar imagen anterior solo si hay una nueva imagen
+            if ($imagenGaleria) {
+                unlink($carpetaImagenes . $imagenGaleria);
+            }
             $nombreImagen = md5(uniqid(rand(), true)) . ".jpg";
 
-            //subir la imagen
-            move_uploaded_file($imagen['tmp_name'], $carpetaImagenes .  $nombreImagen);
+            // subir la imagen
+            move_uploaded_file($imagen['tmp_name'], $carpetaImagenes . $nombreImagen);
         } else {
-            $nombreImagen =  $clasificado['imagen'];
+            $nombreImagen = $imagenGaleria; // mantener la imagen actual si no se sube una nueva
         }
 
-        //genera nombre unico
-
-
-        //insertar en la base de datos
+        // insertar en la base de datos
         $query = "UPDATE galeriainicio SET titulo = '{$titulo}', imagen = '{$nombreImagen}' WHERE id= {$id}";
-        // echo $query;
-        // exit;
-        $mensaje = '';
         $resultado = mysqli_query($db, $query);
+
         if ($resultado) {
             $mensaje = "Actualizado correctamente";
-            // header('Location:/admin');
+            header('Location: /admin/index.php');
         }
     }
 }
@@ -119,7 +125,7 @@ incluir_template('header', $nameAdmin = true);
 
         <h3 class="titleCrear">Actualiza el titulo del estilo</h3>
         <div class="input-container">
-            <input id="titulo" type="text" value="<?php echo $titulo; ?>" placeholder="Nombre del estilo..." class="inputIntern" id="nombreEstilo" name="titulo" />
+            <input id="titulo" type="text" value="<?php echo $galeria->titulo; ?>" placeholder="Nombre del estilo..." class="inputIntern" id="nombreEstilo" name="titulo" />
             <!-- <i class="fa-solid fa-user icon"></i> -->
         </div>
         <h3 class="titleCrear">Actualiza la imagen del estilo</h3>

@@ -1,18 +1,23 @@
 <?php
-require '../includes/functions.php';
-$auth = estaAutenticado();
+require '../includes/app.php';
+// $auth = estaAutenticado();
+estaAutenticado();
 
-if (!$auth) {
-    header('Location: /');
-    exit;
-};
+use App\Galeria;
+// if (!$auth) {
+//     header('Location: /');
+//     exit;
+// };
 //importar conexion
-require '../includes/config/database.php';
-$db = conectarDB();
+// require '../includes/config/database.php';
+// $db = conectarDB();
 
+//implementar un metodo  para tener todas las propiedades
+$galeria = Galeria::all();
+// debuguear($galeria);
 //escribir query
 $query = "SELECT * FROM galeriainicio";
-
+$resultado = $_GET['resultado'] ?? null;
 //consultar la db
 $resultadoConsulta = mysqli_query($db, $query);
 
@@ -68,23 +73,23 @@ incluir_template('header', $nameAdmin = true);
     </thead>
     <!-- mostrar resultados -->
     <tbody>
-        <?php while ($clasificado = mysqli_fetch_assoc($resultadoConsulta)) : ?>
+        <?php foreach ($galeria as $clasificado) : ?>
             <tr class="spacer-row">
                 <td colspan="4"></td>
             </tr>
             <tr>
-                <th><?php echo $clasificado['id']; ?></th>
-                <th><?php echo $clasificado['titulo']; ?></th>
-                <th><img src="/imagenes/<?php echo $clasificado['imagen']; ?>" class="imagenTabla" alt=""></th>
+                <th><?php echo $clasificado->id; ?></th>
+                <th><?php echo $clasificado->titulo; ?></th>
+                <th><img src="/imagenes/<?php echo $clasificado->imagen; ?>" class="imagenTabla" alt=""></th>
                 <th class="flexLink">
                     <form method="POST">
-                        <input type="hidden" name="id" value="<?php echo $clasificado['id']; ?>">
+                        <input type="hidden" name="id" value="<?php echo $clasificado->id; ?>">
                         <input class="btnDelete" type="submit" value="Eliminar">
                     </form>
-                    <a href="propiedades/actualizar.php?id=<?php echo $clasificado['id']; ?>" class="btnUpdate">Actualizar</a>
+                    <a href="propiedades/actualizar.php?id=<?php echo $clasificado->id; ?>" class="btnUpdate">Actualizar</a>
                 </th>
             </tr>
-        <?php endwhile; ?>
+        <?php endforeach; ?>
     </tbody>
 </table>
 

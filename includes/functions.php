@@ -33,3 +33,9 @@ function debuguear($variable)
     echo "</pre>";
     exit;
 }
+//escapa el html para sanitizarlo
+function s($html): string
+{
+    $s = htmlspecialchars($html);
+    return $s;
+}
