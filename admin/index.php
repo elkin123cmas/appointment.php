@@ -28,32 +28,34 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
     if ($id) {
+        $galeria = Galeria::find($id);
+        $galeria->eliminar();
         // Eliminar el archivo
-        $query = "SELECT imagen FROM galeriainicio WHERE id = {$id}";
-        $resultado = mysqli_query($db, $query);
-        $consulta = mysqli_fetch_assoc($resultado);
+        // $query = "SELECT imagen FROM galeriainicio WHERE id = {$id}";
+        // $resultado = mysqli_query($db, $query);
+        // $consulta = mysqli_fetch_assoc($resultado);
 
-        if ($consulta && isset($consulta['imagen']) && !empty($consulta['imagen'])) {
-            $filePath = '../imagenes/' . $consulta['imagen'];
-            if (is_file($filePath)) {
-                unlink($filePath);
-            } else {
-                // Manejar el error si no es un archivo
-                echo "Error: No es un archivo válido.";
-            }
-        } else {
-            // Manejar el error si la consulta no devuelve resultados
-            echo "Error: No se encontró la imagen.";
-        }
+        // if ($consulta && isset($consulta['imagen']) && !empty($consulta['imagen'])) {
+        //     $filePath = '../imagenes/' . $consulta['imagen'];
+        //     if (is_file($filePath)) {
+        //         unlink($filePath);
+        //     } else {
+        //         // Manejar el error si no es un archivo
+        //         echo "Error: No es un archivo válido.";
+        //     }
+        // } else {
+        //     // Manejar el error si la consulta no devuelve resultados
+        //     echo "Error: No se encontró la imagen.";
+        // }
 
         // Eliminar estilo
-        $query = "DELETE FROM galeriainicio WHERE id = {$id}";
-        $resultado = mysqli_query($db, $query);
+        // $query = "DELETE FROM galeriainicio WHERE id = {$id}";
+        // $resultado = mysqli_query($db, $query);
 
-        if ($resultado) {
-            header('Location: index.php');
-            exit;
-        }
+        // if ($resultado) {
+        //     header('Location: index.php');
+        //     exit;
+        // }
     }
 }
 

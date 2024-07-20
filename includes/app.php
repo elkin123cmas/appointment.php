@@ -7,8 +7,14 @@ require "config/database.php";
 // Conectar a la base de datos
 $db = conectarDB();
 
-use App\Galeria;
+use App\ActiveRecords;
 
-Galeria::setDB($db);
+ActiveRecords::setDB($db);
 
 // var_dump($galeria);
+// Verificar si la clase Galeria se carga correctamente
+// if (class_exists('App\ActiveRecords')) {
+//     echo "La clase Galeria se ha cargado correctamente.";
+// } else {
+//     echo "Error al cargar la clase Galeria.";
+// }
